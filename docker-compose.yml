@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  beszel-agent:
+    image: "henrygd/beszel-agent"
+    container_name: "beszel-agent"
+    restart: unless-stopped
+    network_mode: host
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /mnt/addons:/extra-filesystems/addons:ro
+      - /mnt/cache:/extra-filesystems/cache:ro
+      - /mnt/cached:/extra-filesystems/cached:ro
+      - /mnt/disk1:/extra-filesystems/disk1:ro
+      - /mnt/disks:/extra-filesystems/disks:ro
+      - /mnt/remotes:/extra-filesystems/remotes:ro
+      - /mnt/rootshare:/extra-filesystems/rootshare:ro
+      - /mnt/user:/extra-filesystems/user:ro
+      - /mnt/user0:/extra-filesystems/user0:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+    environment:
+      LISTEN: 45876
+      KEY: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICifwhGfXPMejgbD2U9QrJ8VPBsHsn3Ky1b6svzWgLjt" 
